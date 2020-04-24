@@ -7,9 +7,10 @@ import './Card.css';
 const Card = (props) => {
   return (
     <div className="card">
-      Card
-      <p>{ props.text }</p>
-      <p>{ props.emoji }</p>
+      <div className="card__content">
+        <p className=".card__content-text">{ props.text }</p>
+        <p className="card__content-emoji">{ props.emoji }</p>
+      </div>
     </div>
   )
 }
