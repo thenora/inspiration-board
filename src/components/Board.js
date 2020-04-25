@@ -28,7 +28,7 @@ const Board = () => {
         return (
       <Card
         text={card.card.text} 
-        emoji={card.card.emoji}
+        emojiName={card.card.emoji}
       />
     )
   })
