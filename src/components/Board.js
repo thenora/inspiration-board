@@ -49,6 +49,7 @@ const Board = () => {
     </div>
   )
 };
+
 Board.propTypes = {
 ​
 };
