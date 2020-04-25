@@ -27,8 +27,8 @@ const Board = () => {
       const boardCards = response.data.map ((card) => {
         return (
       <Card
-        text={card.text} 
-        emoji={card.emoji}
+        text={card.card.text} 
+        emoji={card.card.emoji}
       />
     )
   })
