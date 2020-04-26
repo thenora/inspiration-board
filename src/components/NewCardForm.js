@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import emoji from 'emoji-dictionary';
 import './NewCardForm.css';
 
 const EMOJI_LIST = ["", "heart_eyes", "beer", "clap", "sparkling_heart", "heart_eyes_cat", "dog"]
 
-const NewCardForm = () => {
+const NewCardForm = (props) => {
   const [newCard, setNewCard] = useState({
     text: "",
     emoji: ""
@@ -28,7 +27,7 @@ const NewCardForm = () => {
     event.preventDefault();
 
     // take props from button click to create new card info
-    props.onSubmit(newCard);
+    props.onAddCard(newCard);
 
     // reset input fields
     setNewCard({
@@ -42,15 +41,19 @@ const NewCardForm = () => {
       <h3 className="new-card-form__header">Leave some inspiration:</h3>
       <form className="new-card-form__form">
 
-        <label className="new-card-form__form-label" htmlFor="text">Text</label>
+        {/* Looks better without label */}
+        {/* <label className="new-card-form__form-label" htmlFor="text">Text</label> */}
         <input 
-          className="new-card-form__form-textarea" type="text" 
+          className="new-card-form__form-textarea" 
+          type="text"
+          placeholder="An encouraging message" 
           name="text" 
           onChange={onInputChange} />
 
-        <label className="new-card-form__form-label" htmlFor="emoji">Emoji name</label>
+        {/* <label className="new-card-form__form-label" htmlFor="emoji">Emoji name</label> */}
         <input 
-          className="new-card-form__form-textarea" 
+          className="new-card-form__form-textarea"
+          placeholder="emoji name" 
           type="text" 
           name="text" 
           onChange={onInputChange} />
@@ -67,7 +70,7 @@ const NewCardForm = () => {
   )
 };
 
-Card.propTypes = {
+NewCardForm.propTypes = {
 
 };
 

@@ -1,11 +1,11 @@
-import React, { Component, useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
 // import CARD_DATA from '../data/card-data.json';
+
 const BASE_URL = 'https://inspiration-board.herokuapp.com/boards/nora-antonia';
 
 const Board = () => {
@@ -70,7 +70,18 @@ const Board = () => {
   //     });
   // }, []);
 
-  
+  // add a card
+  const onAddCard = card => {
+    const cardsCopy = [...cards];
+
+    axios.post(BASE_URL + '/cards')
+      .then(() => {
+        getCards();
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.cause);
+      });
+  };
 
 
   // delete 
@@ -89,7 +100,7 @@ const Board = () => {
         //   };
         
         // v2
-        getCards(); // works but weird lag because it recalls the API
+        getCards(); // works but lag because it recalls the API
         // On thinking about it, when we add a card we'll want to recall the API anyway to get the new card and make sure it published
 
         // v1 of delete - deletes but leaves blank screen
@@ -108,11 +119,16 @@ const Board = () => {
 
 
   return (
-    <div className="board">
-      {cards}
-    </div>
+    <article>
+      <div>{errorMessage}</div>
+      <div className="board">
+        <NewCardForm onAddCard={onAddCard} />
+        {cards}
+      </div>
+    </article>
   )
 };
+
 Board.propTypes = {
 
 };
