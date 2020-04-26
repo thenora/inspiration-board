@@ -44,7 +44,7 @@ const Board = () => {
   }, []);
 
   const onClickCallback = (id) => {
-    axios.delete(`https://inspiration-board.herokuapp.com/boards/cards/${id}`)
+    axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
       .then(() => {
         const updatedCardList = cards.filter(card =>
           card.id !== id
