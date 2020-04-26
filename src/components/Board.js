@@ -29,6 +29,7 @@ const Board = () => {
       <Card
         text={card.card.text} 
         emojiName={card.card.emoji}
+        id={card.card.emoji}
       />
     )
   })
