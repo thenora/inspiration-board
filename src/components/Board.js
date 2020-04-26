@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -20,7 +20,8 @@ const Board = () => {
   // })
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
-  useEffect(() => {
+
+  const getCards = useCallback(() => {
     axios.get(BASE_URL + '/cards')
       .then((response) => {
         // Get the list of students
@@ -33,28 +34,76 @@ const Board = () => {
               onClickCallback={onClickCallback}
             />
           )
-        })
+        });
 
         setCards(boardCards)
       })
       .catch((error) => {
         // Still need to handle errors
-        setErrorMessage(error.message)
+        setErrorMessage(error.message);
       });
   }, []);
 
+  // moved to add getCards helper method to use with delete and add card 
+  useEffect (getCards);
+  // useEffect(() => {
+  //   axios.get(BASE_URL + '/cards') 
+  //     .then((response) => {
+  //       // Get the list of students
+  //       const boardCards = response.data.map((card) => {
+  //         return (
+  //           <Card
+  //             id={card.card.id}
+  //             text={card.card.text}
+  //             emojiName={card.card.emoji}
+  //             onClickCallback={onClickCallback}
+  //           />
+  //         )
+  //       });
+
+  //       setCards(boardCards)
+  //     })
+  //     .catch((error) => {
+  //       // Still need to handle errors
+  //       setErrorMessage(error.message);
+  //     });
+  // }, []);
+
+  
+
+
+  // delete
   const onClickCallback = (id) => {
     axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
       .then(() => {
-        const updatedCardList = cards.filter(card =>
-          card.id !== id
-        )
-        setCards(updatedCardList)
+        
+        //v3 - deletes but doesn't reload
+        // const updatedCardList = [...cards]
+        
+        // for (let i=0; i < updatedCardList.length; i++)
+        //   if (id === updatedCardList[i].card.id) {
+        //     updatedCardList.splice(i, 1);
+        //     setCards(updatedCardList);
+        //     return;
+        //   };
+        
+        // v2
+        getCards(); // works but weird lag because it recalls the API
+        // On thinking about it, when we add a card we'll want to recall the API anyway to get the new card and make sure it published
+
+        // v1 of delete - deletes but leaves blank screen
+        
+        // const updatedCardList = cards.filter(card =>
+        //   card.id === id
+        // );
+        // setCards(updatedCardList);
+        // return;
       })
+      
       .catch((error) => {
-        setErrorMessage(error.message)
-      })
-  }
+        setErrorMessage(error.message);
+      });
+  };
 
 
   return (
