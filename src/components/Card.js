@@ -21,6 +21,7 @@ const Card = ({ text, emojiName }) => {
       <div className="card__content">
         <p className=".card__content-text">{ text }</p>
         <p className="card__content-emoji">{ emojiSymbol(emojiName) }</p>
+        <input className="card__delete" type="submit" value="delete" />
       </div>
     </div>
   )
