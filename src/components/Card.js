@@ -22,10 +22,12 @@ const Card = (props) => {
   return (
     <div className="card">
       <div className="card__content">
+        
         <p className=".card__content-text">{ props.text }</p>
         <p className="card__content-emoji">{ emojiSymbol(props.emojiName) }</p>
-        <button className="card__delete" onClick={buttonClick}>Delete</button>
+        
       </div>
+      <button className="card__delete" onClick={buttonClick}>X</button>
     </div>
   )
 }
