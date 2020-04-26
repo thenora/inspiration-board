@@ -55,7 +55,7 @@ const NewCardForm = (props) => {
           className="new-card-form__form-textarea"
           placeholder="emoji name" 
           type="text" 
-          name="text" 
+          name="emoji" 
           onChange={onInputChange} />
       
         <input 
