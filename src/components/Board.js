@@ -31,7 +31,7 @@ const Board = () => {
               id={card.card.id}
               text={card.card.text}
               emojiName={card.card.emoji}
-              onClickCallback={onClickCallback}
+              onDeleteCallback={onDeleteCallback}
             />
           )
         });
@@ -46,6 +46,7 @@ const Board = () => {
 
   // moved to add getCards helper method to use with delete and add card 
   useEffect (getCards);
+
   // useEffect(() => {
   //   axios.get(BASE_URL + '/cards') 
   //     .then((response) => {
@@ -72,8 +73,8 @@ const Board = () => {
   
 
 
-  // delete
-  const onClickCallback = (id) => {
+  // delete 
+  const onDeleteCallback = (id) => {
     axios.delete(`https://inspiration-board.herokuapp.com/cards/${id}`)
       .then(() => {
         

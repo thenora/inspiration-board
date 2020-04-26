@@ -15,7 +15,7 @@ const Card = (props) => {
       }
     };
     const buttonClick = () => {
-      props.onClickCallback(props.id)
+      props.onDeleteCallback(props.id)
     }
 
 
