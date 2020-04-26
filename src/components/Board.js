@@ -9,7 +9,7 @@ import NewCardForm from './NewCardForm';
 const BASE_URL = 'https://inspiration-board.herokuapp.com/boards/nora-antonia';
 
 const Board = () => {
-  
+
   // const cards = CARD_DATA.cards.map ((card) => {
   //   return  (
   //     <Card 
@@ -20,19 +20,21 @@ const Board = () => {
   // })
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
-    useEffect(() => {
-      axios.get(BASE_URL + '/cards')
+  useEffect(() => {
+    axios.get(BASE_URL + '/cards')
       .then((response) => {
         // Get the list of students
-      const boardCards = response.data.map ((card) => {
-        return (
-      <Card
-        text={card.card.text} 
-        emojiName={card.card.emoji}
-      />
-    )
-  })
-        
+        const boardCards = response.data.map((card) => {
+          return (
+            <Card
+              id={card.card.id}
+              text={card.card.text}
+              emojiName={card.card.emoji}
+              onClickCallback={onClickCallback}
+            />
+          )
+        })
+
         setCards(boardCards)
       })
       .catch((error) => {
@@ -40,6 +42,19 @@ const Board = () => {
         setErrorMessage(error.message)
       });
   }, []);
+
+  const onClickCallback = (id) => {
+    axios.delete(`https://inspiration-board.herokuapp.com/boards/${id}`)
+      .then(() => {
+        const updatedCardList = cards.filter(card =>
+          card.id !== id
+        )
+        setCards(updatedCardList)
+      })
+      .catch((error) => {
+        setErrorMessage(error.message)
+      })
+  }
 
 
   return (

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import emoji from 'emoji-dictionary';
 import './Card.css';
 
-const Card = ({ text, emojiName }) => {
+const Card = (props) => {
 
 
     // convert name to unicode symbol if not empty
@@ -14,14 +14,17 @@ const Card = ({ text, emojiName }) => {
         return "";
       }
     };
- 
+    const buttonClick = () => {
+      props.onClickCallback(props.id)
+    }
+
 
   return (
     <div className="card">
       <div className="card__content">
-        <p className=".card__content-text">{ text }</p>
-        <p className="card__content-emoji">{ emojiSymbol(emojiName) }</p>
-        <input className="card__delete" type="submit" value="delete" />
+        <p className=".card__content-text">{ props.text }</p>
+        <p className="card__content-emoji">{ emojiSymbol(props.emojiName) }</p>
+        <button className="card__delete" onClick={buttonClick}>Delete</button>
       </div>
     </div>
   )
