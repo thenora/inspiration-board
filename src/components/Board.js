@@ -4,25 +4,16 @@ import axios from 'axios';
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
-// import CARD_DATA from '../data/card-data.json';
 
 const BASE_URL = 'https://inspiration-board.herokuapp.com/boards/nora-antonia';
 
-const Board = () => {
+const Board = ({url, boardName}) => {
 
-  // const cards = CARD_DATA.cards.map ((card) => {
-  //   return  (
-  //     <Card 
-  //       text={card.text} 
-  //       emoji={card.emoji}
-  //     />
-  //   )
-  // })
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const getCards = useCallback(() => {
-    axios.get(BASE_URL + '/cards')
+    axios.get(`${url}${boardName}/cards`)
       .then((response) => {
         // Get the list of students
         const boardCards = response.data.map((card) => {
@@ -40,35 +31,11 @@ const Board = () => {
       })
       .catch((error) => {
         // Still need to handle errors
-        setErrorMessage(error.message);
+        setErrorMessage(error.response.data.cause);
       });
   }, []);
 
-  // moved to add getCards helper method to use with delete and add card 
   useEffect (getCards);
-
-  // useEffect(() => {
-  //   axios.get(BASE_URL + '/cards') 
-  //     .then((response) => {
-  //       // Get the list of students
-  //       const boardCards = response.data.map((card) => {
-  //         return (
-  //           <Card
-  //             id={card.card.id}
-  //             text={card.card.text}
-  //             emojiName={card.card.emoji}
-  //             onClickCallback={onClickCallback}
-  //           />
-  //         )
-  //       });
-
-  //       setCards(boardCards)
-  //     })
-  //     .catch((error) => {
-  //       // Still need to handle errors
-  //       setErrorMessage(error.message);
-  //     });
-  // }, []);
 
   // add a card
   const onAddCard = card => {
