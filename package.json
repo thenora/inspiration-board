@@ -12,7 +12,8 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "watchman": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

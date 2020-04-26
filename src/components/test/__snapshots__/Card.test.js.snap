@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card card loads properly 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <div
+      class="card__content"
+    >
+      <p
+        class=".card__content-text"
+      >
+        howdy
+      </p>
+      <p
+        class="card__content-emoji"
+      />
+      <button
+        class="card__delete"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
