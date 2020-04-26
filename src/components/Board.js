@@ -72,9 +72,7 @@ const Board = () => {
 
   // add a card
   const onAddCard = card => {
-    const cardsCopy = [...cards];
-
-    axios.post(BASE_URL + '/cards')
+    axios.post(BASE_URL + '/cards', card)
       .then(() => {
         getCards();
       })

@@ -22,7 +22,7 @@ const NewCardForm = (props) => {
     setNewCard(newCardInfo);
   };
 
-  const onFormSubmit = (event) => {
+  const onFormSubmit = event => {
     // prevent browser from trying to submit form
     event.preventDefault();
 
@@ -39,7 +39,7 @@ const NewCardForm = (props) => {
   return (
     <div className="new-card-form">
       <h3 className="new-card-form__header">Leave some inspiration:</h3>
-      <form className="new-card-form__form">
+      <form className="new-card-form__form" onSubmit={onFormSubmit}>
 
         {/* Looks better without label */}
         {/* <label className="new-card-form__form-label" htmlFor="text">Text</label> */}
@@ -47,7 +47,7 @@ const NewCardForm = (props) => {
           className="new-card-form__form-textarea" 
           type="text"
           placeholder="An encouraging message" 
-          name="text" 
+          name="text"
           onChange={onInputChange} />
 
         {/* <label className="new-card-form__form-label" htmlFor="emoji">Emoji name</label> */}
@@ -62,7 +62,7 @@ const NewCardForm = (props) => {
           className="new-card-form__form-button" 
           type="submit" 
           value="Add note" 
-          onClick={onFormSubmit} />
+          onSubmit={onFormSubmit} />
 
       </form>
 
