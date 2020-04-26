@@ -26,6 +26,11 @@ const NewCardForm = (props) => {
     // prevent browser from trying to submit form
     event.preventDefault();
 
+    // if (newCard.text === "") {
+    //   alert("Oops! Please enter an encouraging message.");
+    //   return;
+    // };
+
     // take props from button click to create new card info
     props.onAddCard(newCard);
 
@@ -48,6 +53,7 @@ const NewCardForm = (props) => {
           type="text"
           placeholder="An encouraging message" 
           name="text"
+          value={newCard.text}
           onChange={onInputChange} />
 
         {/* <label className="new-card-form__form-label" htmlFor="emoji">Emoji name</label> */}
@@ -56,6 +62,7 @@ const NewCardForm = (props) => {
           placeholder="emoji name" 
           type="text" 
           name="emoji" 
+          value={newCard.emoji}
           onChange={onInputChange} />
       
         <input 
@@ -71,7 +78,7 @@ const NewCardForm = (props) => {
 };
 
 NewCardForm.propTypes = {
-
+  onAddCard: PropTypes.func.isRequired
 };
 
 export default NewCardForm;
