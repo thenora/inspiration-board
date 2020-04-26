@@ -25,7 +25,6 @@ const NewCardForm = (props) => {
     // prevent browser from trying to submit form
     event.preventDefault();
 
-       // take props from button click to create new card info
     props.onAddCard(newCard);
 
     // reset input fields
