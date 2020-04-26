@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ import NewCardForm from './NewCardForm';
 // import CARD_DATA from '../data/card-data.json';
 const BASE_URL = 'https://inspiration-board.herokuapp.com/boards/nora-antonia';
 
-const Board = () => {
+const Board = (props) => {
   
   // const cards = CARD_DATA.cards.map ((card) => {
   //   return  (
@@ -20,7 +20,9 @@ const Board = () => {
   // })
   const [cards, setCards] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
-    useEffect(() => {
+
+  // do we need to put this inside a const variable?
+  useEffect(() => {
       axios.get(BASE_URL + '/cards')
       .then((response) => {
         // Get the list of students
@@ -30,22 +32,29 @@ const Board = () => {
         text={card.card.text} 
         emojiName={card.card.emoji}
         id={card.card.emoji}
+        onDelete={props.onDelete}
       />
-    )
-  })
+    );
+  });
         
         setCards(boardCards)
       })
       .catch((error) => {
         // Still need to handle errors
-        setErrorMessage(error.message)
+        setErrorMessage(error.message);
       });
   }, []);
+
+  
 
 
   return (
     <div className="board">
-      {cards}
+      {props.errorMessage ? 
+        <ul className="validation-errors-display">
+          <li className="validation-errors-display__list">{props.errorMessage}</li>
+        </ul> : ''}
+        {cards}
     </div>
   )
 };
