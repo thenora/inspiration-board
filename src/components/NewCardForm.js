@@ -16,7 +16,6 @@ const NewCardForm = (props) => {
     const newCardInfo = {
       ...newCard,
       [name]: value // [name] get value of name and use it as the key | value is the variable above
-      // line 46 is equivalent to: newCardInfo[name] = value
     };
   
     setNewCard(newCardInfo);
@@ -26,12 +25,7 @@ const NewCardForm = (props) => {
     // prevent browser from trying to submit form
     event.preventDefault();
 
-    // if (newCard.text === "") {
-    //   alert("Oops! Please enter an encouraging message.");
-    //   return;
-    // };
-
-    // take props from button click to create new card info
+       // take props from button click to create new card info
     props.onAddCard(newCard);
 
     // reset input fields
@@ -46,8 +40,6 @@ const NewCardForm = (props) => {
       <h3 className="new-card-form__header">Leave some inspiration:</h3>
       <form className="new-card-form__form" onSubmit={onFormSubmit}>
 
-        {/* Looks better without label */}
-        {/* <label className="new-card-form__form-label" htmlFor="text">Text</label> */}
         <input 
           className="new-card-form__form-textarea" 
           type="text"
@@ -56,7 +48,6 @@ const NewCardForm = (props) => {
           value={newCard.text}
           onChange={onInputChange} />
 
-        {/* <label className="new-card-form__form-label" htmlFor="emoji">Emoji name</label> */}
         <input 
           className="new-card-form__form-textarea"
           placeholder="emoji name" 
