@@ -16,12 +16,12 @@ exports[`Card card loads properly 1`] = `
       <p
         class="card__content-emoji"
       />
-      <button
-        class="card__delete"
-      >
-        Delete
-      </button>
     </div>
+    <button
+      class="card__delete"
+    >
+      X
+    </button>
   </div>
 </DocumentFragment>
 `;

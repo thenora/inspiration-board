@@ -3,7 +3,9 @@
 exports[`Board that it matches the existing snapshot 1`] = `
 <DocumentFragment>
   <article>
-    <div />
+    <div
+      class="validation-errors-display"
+    />
     <div
       class="board"
     >
@@ -23,12 +25,14 @@ exports[`Board that it matches the existing snapshot 1`] = `
             name="text"
             placeholder="An encouraging message"
             type="text"
+            value=""
           />
           <input
             class="new-card-form__form-textarea"
             name="emoji"
             placeholder="emoji name"
             type="text"
+            value=""
           />
           <input
             class="new-card-form__form-button"

@@ -18,12 +18,14 @@ exports[`NewCardForm testing NewCardForm 1`] = `
         name="text"
         placeholder="An encouraging message"
         type="text"
+        value=""
       />
       <input
         class="new-card-form__form-textarea"
         name="emoji"
         placeholder="emoji name"
         type="text"
+        value=""
       />
       <input
         class="new-card-form__form-button"
