@@ -2,7 +2,7 @@
   "name": "inspiration-board",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://thenora.gitub.io/inspiration-board",
+  "homepage": "https://thenora.github.io/inspiration-board/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
